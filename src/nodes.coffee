@@ -707,29 +707,21 @@ exports.Range = class Range extends Base
     varPart += ", #{@step}" if @step isnt @stepVar
     [lt, gt] = ["#{idx} <#{@equals}", "#{idx} >#{@equals}"]
 
-    # Generate the condition.
-    condPart = if @stepNum
-      if +@stepNum > 0 then "#{lt} #{@toVar}" else "#{gt} #{@toVar}"
-    else if known
-      [from, to] = [+@fromNum, +@toNum]
-      if from <= to then "#{lt} #{to}" else "#{gt} #{to}"
-    else
-      cond     = "#{@fromVar} <= #{@toVar}"
-      "#{cond} ? #{lt} #{@toVar} : #{gt} #{@toVar}"
+    # Generate the condition and step.
 
-    # Generate the step.
-    stepPart = if @stepVar
-      "#{idx} += #{@stepVar}"
-    else if known
-      if namedIndex
-        if from <= to then "++#{idx}" else "--#{idx}"
+    if @stepNum
+      if +@stepNum > 0
+        condPart = "#{lt} #{@toVar}"
+        stepPart = "#{idx} += #{@stepNum}"
       else
-        if from <= to then "#{idx}++" else "#{idx}--"
+        condPart = "#{gt} #{@toVar}"
+        stepPart = "#{idx} -= #{-@stepNum}"
+    else if @stepVar
+      condPart = "#{@stepVar}*#{lt} #{@stepVar}*#{@toVar}"
+      stepPart = "#{idx} += #{@stepVar}"
     else
-      if namedIndex
-        "#{cond} ? ++#{idx} : --#{idx}"
-      else
-        "#{cond} ? #{idx}++ : #{idx}--"
+      condPart = "#{lt} #{@toVar}"
+      stepPart = if namedIndex then "++#{idx}" else "#{idx}++"
 
     varPart  = "#{idxName} = #{varPart}" if namedIndex
     stepPart = "#{idxName} = #{stepPart}" if namedIndex
@@ -1751,11 +1743,39 @@ exports.For = class For extends While
       if name and not @pattern
         namePart   = "#{name} = #{svar}[#{kvar}]"
       unless @object
-        lvar       = scope.freeVariable 'len'
-        forVarPart = "#{kvarAssign}#{ivar} = 0, #{lvar} = #{svar}.length"
-        forVarPart += ", #{stepvar} = #{@step.compile o, LEVEL_OP}" if @step
-        stepPart   = "#{kvarAssign}#{if @step then "#{ivar} += #{stepvar}" else (if kvar isnt ivar then "++#{ivar}" else "#{ivar}++")}"
-        forPart    = "#{forVarPart}; #{ivar} < #{lvar}; #{stepPart}"
+        if @step
+          stepVal = @step.compile o, LEVEL_OP
+          stepNum = stepVal.match(SIMPLENUM)
+        else
+          stepNum = 1
+        if stepNum
+          if +stepNum > 0
+            lvar       = scope.freeVariable 'len'
+            forVarPart = "#{kvarAssign}#{ivar} = 0, #{lvar} = #{svar}.length"
+            condPart   = "#{ivar} < #{lvar}"
+            incPart    = if +stepNum is 1
+                if kvar isnt ivar then "++#{ivar}" else "#{ivar}++" 
+              else
+                "#{ivar} += #{+stepNum}"
+          else
+            forVarPart = "#{kvarAssign}#{ivar} = #{svar}.length - 1"
+            condPart   = "#{ivar} >= 0"
+            console.log +stepNum
+            incPart    = if +stepNum is -1
+                if kvar isnt ivar then "--#{ivar}" else "#{ivar}--" 
+              else
+                "#{ivar} -= #{-stepNum}"
+          stepPart = "#{kvarAssign}#{incPart}"
+        else if @step
+          lvar       = scope.freeVariable 'len'
+          absvar     = scope.freeVariable 'abs'
+          jvar       = scope.freeVariable 'j'
+          forVarPart = """#{lvar} = #{svar}.length, #{jvar} = 0, #{ivar} = #{lvar} - 1,
+                          #{absvar} = #{stepvar} = #{stepVal}, #{absvar} *= #{stepvar} > 0 ? 1 : -1,
+                          #{kvar} = #{stepvar} > 0 ? #{jvar} : #{lvar} - 1"""
+          condPart   = "#{jvar} < #{lvar}"
+          stepPart   = "#{jvar} += #{absvar}, #{kvar} += #{stepvar}"
+        forPart    = "#{forVarPart}; #{condPart}; #{stepPart}"
     if @returns
       resultPart   = "#{@tab}#{rvar} = [];\n"
       returnResult = "\n#{@tab}return #{rvar};"
