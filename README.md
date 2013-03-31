@@ -1,3 +1,12 @@
+**EDIT**
+Since CoffeeScript 1.5.1, CoffeeScript matches my behavior, yay!
+
+<hr>
+<hr>
+<hr>
+<hr>
+
+
 Attempt at fixing the for loop behavior of CoffeeScript according to my 
 [proposal](https://github.com/michaelficarra/CoffeeScriptRedux/issues/94):
 
