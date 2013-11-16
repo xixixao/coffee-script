@@ -31,6 +31,7 @@ eq "#{6 / 2}#{6 / 2}",       '33' # parsed as division
 eq "#{6 + /2}#{6/ + 2}",     '6/2}#{6/2' # parsed as a regex
 eq "#{6/2}
     #{6/2}",                 '3    3' # newline cannot be part of a regex, so it's division
+eq "#{6/2}/}",               '3/}' # regex can't follow a number without whitespace
 eq "#{/// "'/'"/" ///}",     '/"\'\\/\'"\\/"/' # heregex, stuffed with spicy characters
 eq "#{/\\'/}",               "/\\\\'/"
 

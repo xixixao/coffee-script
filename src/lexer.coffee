@@ -495,7 +495,8 @@ exports.Lexer = class Lexer
           continue
       if end is '}' and letter in ['"', "'"]
         stack.push end = letter
-      else if end is '}' and letter is '/' and match = (HEREGEX.exec(str[i..]) or REGEX.exec(str[i..]))
+      else if end is '}' and letter is '/' and !(/\d/.test prev) and
+              match = (HEREGEX.exec(str[i..]) or REGEX.exec(str[i..]))
         continueCount += match[0].length - 1
       else if end is '}' and letter is '{'
         stack.push end = '}'
