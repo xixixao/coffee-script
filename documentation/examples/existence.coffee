@@ -1,4 +1,5 @@
-solipsism = true if mind? and not world?
+if mind? && !world?
+  solipsism = true
 
 speed = 0
 speed ?= 15

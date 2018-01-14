@@ -6,7 +6,7 @@ You might have noticed how even though we don’t add return statements to Coffe
 codeFor('expressions', 'eldest')
 ```
 
-Even though functions will always return their final value, it’s both possible and encouraged to return early from a function body writing out the explicit return (`return value`), when you know that you’re done.
+Even though functions will always return their final value, it’s both possible and encouraged to return early from a function body writing out the explicit return (`return value`), when you know that you’re done. You should also use explicit `return` at the end if you intend for the function to have no return value.
 
 Because variable declarations occur at the top of scope, assignment can be used within expressions, even for variables that haven’t been seen before:
 

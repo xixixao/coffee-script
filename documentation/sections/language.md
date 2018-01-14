@@ -6,5 +6,5 @@ _Many of the examples can be run (where it makes sense) by pressing the_ <small>
 
 First, the basics: CoffeeScript uses significant whitespace to delimit blocks of code. You don’t need to use semicolons `;` to terminate expressions, ending the line will do just as well (although semicolons can still be used to fit multiple expressions onto a single line). Instead of using curly braces `{ }` to surround blocks of code in [functions](#literals), [if-statements](#conditionals), [switch](#switch), and [try/catch](#try), use indentation.
 
-You don’t need to use parentheses to invoke a function if you’re passing arguments. The implicit call wraps forward to the end of the line or block expression.<br>
+You don’t need to use parentheses to invoke a function if you’re passing arguments. The implicit call wraps forward to the end of the line or block expression. This style is discouraged unless the last argument is a function declaration.<br>
 `console.log sys.inspect object` → `console.log(sys.inspect(object));`

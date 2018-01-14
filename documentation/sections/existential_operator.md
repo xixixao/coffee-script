@@ -33,5 +33,5 @@ For completeness:
 | `a?` | tests that `a` is in scope and `a != null` |
 | `a ? b` | returns `a` if `a` is in scope and `a != null`; otherwise, `b` |
 | `a?.b` or `a?['b']` | returns `a.b` if `a` is in scope and `a != null`; otherwise, `undefined` |
-| `a?(b, c)` or `a? b, c`&emsp; | returns the result of calling `a` (with arguments `b` and `c`) if `a` is in scope and callable; otherwise, `undefined` |
+| `a?(b, c)` | returns the result of calling `a` (with arguments `b` and `c`) if `a` is in scope and callable; otherwise, `undefined` |
 | `a ?= b` | assigns the value of `b` to `a` if `a` is not in scope or if `a == null`; produces the new value of `a` |

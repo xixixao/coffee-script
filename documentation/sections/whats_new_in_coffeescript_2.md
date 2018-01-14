@@ -1,5 +1,5 @@
-### What’s New In CoffeeScript 2?
+### What’s New In CoffeeScript(Flow)?
 
-The biggest change in CoffeeScript 2 is that now the CoffeeScript compiler produces modern JavaScript syntax (ES6, or ES2015 and later). A CoffeeScript `=>` becomes a JS `=>`, a CoffeeScript `class` becomes a JS `class` and so on. Major new features in CoffeeScript 2 include [async functions](#async-functions) and [JSX](#jsx). You can read more in the [announcement](announcing-coffeescript-2/).
+CoffeeScript(Flow), just like CoffeeScript 2, compiles to modern JavaScript syntax. Unlike CoffeeScript 2, it has full support for Flow type checking, and it has further stripped the CoffeeScript syntax to avoid "multiple equivalent ways" of expressing the same program. CoffeeScript(Flow) also aims to be fully pretty-printable via [prettier](github.com/facebook/prettier).
 
-There are very few [breaking changes from CoffeeScript 1.x to 2](#breaking-changes); we hope the upgrade process is smooth for most projects.
+There are many [breaking changes from CoffeeScript 2.x to (Flow)](#breaking-changes); but the upgrade process should be smooth for most projects.

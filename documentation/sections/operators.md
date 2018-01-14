@@ -1,18 +1,12 @@
 ## Operators and Aliases
 
-Because the `==` operator frequently causes undesirable coercion, is intransitive, and has a different meaning than in other languages, CoffeeScript compiles `==` into `===`, and `!=` into `!==`. In addition, `is` compiles into `===`, and `isnt` into `!==`.
+Because the `==` operator frequently causes undesirable coercion, is intransitive, and has a different meaning than in other languages, CoffeeScript compiles `==` into `===`, and `!=` into `!==`.
 
-You can use `not` as an alias for `!`.
+Logic operators are the same as in JavaScript.
 
-For logic, `and` compiles to `&&`, and `or` into `||`.
+Instead of a newline or semicolon, `then` can be used to separate conditions from expressions, in `while`, `if`/`else`, and `switch`/`case` statements.
 
-Instead of a newline or semicolon, `then` can be used to separate conditions from expressions, in `while`, `if`/`else`, and `switch`/`when` statements.
-
-As in [YAML](http://yaml.org/), `on` and `yes` are the same as boolean `true`, while `off` and `no` are boolean `false`.
-
-`unless` can be used as the inverse of `if`.
-
-As a shortcut for `this.property`, you can use `@property`.
+As a shortcut for `this.property`, you should use `@property`.
 
 You can use `in` to test for array presence, and `of` to test for JavaScript object-key presence.
 
@@ -28,14 +22,14 @@ All together now:
 
 | CoffeeScript | JavaScript |
 | --- | --- |
-| `is` | `===` |
-| `isnt` | `!==` |
-| `not` | `!` |
-| `and` | `&&` |
-| `or` | `||` |
-| `true`, `yes`, `on` | `true` |
-| `false`, `no`, `off`&emsp; | `false` |
-| `@`, `this` | `this` |
+| `==` | `===` |
+| `!=` | `!==` |
+| `!` | `!` |
+| `&&` | `&&` |
+| `||` | `||` |
+| `true` | `true` |
+| `false` | `false` |
+| `@.` | `this.` |
 | `a in b` | `[].indexOf.call(b, a) >= 0` |
 | `a of b` | `a in b` |
 | `for a from b` | `for (a of b)` |

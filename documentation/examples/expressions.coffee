@@ -1,4 +1,4 @@
-grade = (student) ->
+grade = (student) =>
   if student.excellentWork
     "A+"
   else if student.okayStuff

@@ -1,6 +1,6 @@
 ## Functions
 
-Functions are defined by an optional list of parameters in parentheses, an arrow, and the function body. The empty function looks like this: `->`
+Functions are defined by an optional list of parameters in parentheses, an arrow, and the function body. The empty function looks like this: `=>`
 
 ```
 codeFor('functions', 'cube(5)')

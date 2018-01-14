@@ -1,6 +1,7 @@
-mood = greatlyImproved if singing
+if singing
+  mood = greatlyImproved
 
-if happy and knowsIt
+if happy && knowsIt
   clapsHands()
   chaChaCha()
 else

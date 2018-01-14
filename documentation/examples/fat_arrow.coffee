@@ -1,4 +1,4 @@
-Account = (customer, cart) ->
+Account = (customer, cart) =>
   @customer = customer
   @cart = cart
 

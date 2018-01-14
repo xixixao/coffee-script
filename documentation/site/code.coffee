@@ -13,7 +13,9 @@ CoffeeScript = require '../../lib/coffeescript'
 module.exports = ->
   (file, run = no) ->
     cs = fs.readFileSync "documentation/examples/#{file}.coffee", 'utf-8'
-    js = CoffeeScript.compile cs, bare: yes # This is just the initial JavaScript output; it is replaced by dynamic compilation on changes of the CoffeeScript pane.
+    try
+      js = CoffeeScript.compile cs, bare: yes # This is just the initial JavaScript output; it is replaced by dynamic compilation on changes of the CoffeeScript pane.
+    js ?= 'Not yet compilable'
     render = _.template fs.readFileSync('documentation/site/code.html', 'utf-8')
     include = (file) -> fs.readFileSync("documentation/site/#{file}", 'utf-8')
 

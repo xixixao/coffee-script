@@ -4,6 +4,6 @@ screen =
 
 Object.defineProperty screen, 'height',
   get: ->
-    this.width / this.ratio
+    @width / this.ratio
   set: (val) ->
-    this.width = val / this.ratio
+    @width = val / this.ratio

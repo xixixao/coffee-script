@@ -8,6 +8,7 @@ fibonacci = ->
 getFibonacciNumbers = (length) ->
   results = [1]
   for n from fibonacci()
-    results.push n
-    break if results.length is length
+    results.push(n)
+    if results.length is length
+      break
   results

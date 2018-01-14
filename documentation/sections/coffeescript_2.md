@@ -1,1 +1,1 @@
-## CoffeeScript 2
+## CoffeeScript(Flow)

@@ -1,11 +1,15 @@
-launch() if ignition is on
+if ignition == true
+  launch()
 
-volume = 10 if band isnt SpinalTap
+if band != SpinalTap
+  volume = 10
 
-letTheWildRumpusBegin() unless answer is no
+if answer != false
+  letTheWildRumpusBegin()
 
 if car.speed < limit then accelerate()
 
-winner = yes if pick in [47, 92, 13]
+if pick in [47, 92, 13]
+  winner = true
 
-print inspect "My name is #{@name}"
+print(inspect("My name is #{@name}"))

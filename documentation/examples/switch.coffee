@@ -1,10 +1,10 @@
 switch day
-  when "Mon" then go work
-  when "Tue" then go relax
-  when "Thu" then go iceFishing
-  when "Fri", "Sat"
+  case "Mon" then go work
+  case "Tue" then go relax
+  case "Thu" then go iceFishing
+  case "Fri", "Sat"
     if day is bingoDay
-      go bingo
-      go dancing
-  when "Sun" then go church
-  else go work
+      go(bingo)
+      go(dancing)
+  case "Sun" then go church
+  default go(work)

@@ -5,4 +5,4 @@ perfectSquares = ->
     yield num * num
   return
 
-window.ps or= perfectSquares()
+window.ps ||= perfectSquares()

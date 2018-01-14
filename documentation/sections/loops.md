@@ -14,7 +14,7 @@ If you know the start and end of your loop, or would like to step through in fix
 codeFor('range_comprehensions', 'countdown')
 ```
 
-Note how because we are assigning the value of the comprehensions to a variable in the example above, CoffeeScript is collecting the result of each iteration into an array. Sometimes functions end with loops that are intended to run only for their side-effects. Be careful that you’re not accidentally returning the results of the comprehension in these cases, by adding a meaningful return value — like `true` — or `null`, to the bottom of your function.
+Note how because we are assigning the value of the comprehensions to a variable in the example above, CoffeeScript is collecting the result of each iteration into an array. Sometimes functions end with loops that are intended to run only for their side-effects. Be careful that you’re not accidentally returning the results of the comprehension in these cases, by adding a meaningful return value — like `true` — or `null`, or explicit `return`, to the bottom of your function.
 
 To step through a range comprehension in fixed-size chunks, use `by`, for example:
 `evens = (x for x in [0..10] by 2)`
@@ -38,10 +38,12 @@ The only low-level loop that CoffeeScript provides is the `while` loop. The main
 codeFor('while', 'lyrics.join("\\n")')
 ```
 
-For readability, the `until` keyword is equivalent to `while not`, and the `loop` keyword is equivalent to `while true`.
+For readability, the `loop` keyword is equivalent to `while true`.
 
-When using a JavaScript loop to generate functions, it’s common to insert a closure wrapper in order to ensure that loop variables are closed over, and all the generated functions don’t just share the final values. CoffeeScript provides the `do` keyword, which immediately invokes a passed function, forwarding any arguments.
+CoffeeScript provides the `do` keyword, which immediately invokes a passed function, forwarding any arguments. But this is not necessary, as CoffeeScript automatically uses `const` or `let` binding within the loop, while exposing the index value outside of the loop if refenced.
 
 ```
 codeFor('do')
 ```
+
+

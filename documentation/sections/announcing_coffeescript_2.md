@@ -1,5 +1,13 @@
 # Announcing CoffeeScript 2
 
+Why some of these breaking changes?
+
+One important guiding principle is not to cause confusing changes with JavaScript. If you spend a lot of time writing in both ES6 and CS, differences such as `and` and `&&` become onerous. For this reason, CoffeeScript(Flow) realigns itself with JavaScript, to make the transition between the two languages much smoother, wherever this is easily achievable.
+
+
+
+
+
 We are pleased to announce CoffeeScript 2! This new release of the CoffeeScript language and compiler aims to bring CoffeeScript into the modern JavaScript era, closing gaps in compatibility with JavaScript while preserving the clean syntax that is CoffeeScript’s hallmark. In a nutshell:
 
 - The CoffeeScript 2 compiler now translates CoffeeScript code into modern JavaScript syntax. So a CoffeeScript `=>` is now output as `=>`, a CoffeeScript `class` is now output using the `class` keyword, and so on. This means you may need to [transpile the CoffeeScript compiler’s output](../#es2015plus-output).
